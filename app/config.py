@@ -1,3 +1,6 @@
+"""
+Этот файл служит для задания чувствительных файлов
+"""
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 

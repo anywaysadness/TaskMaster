@@ -3,24 +3,27 @@
 Этот файл служит для создания моделей sqlalchemy
 """
 from app.database_connect import Base
-from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey
-
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, func
+from sqlalchemy.orm import relationship
 
 class User(Base):
     """
     Класс модели sqlalchemy Users
     """
 
-    __tablename__ = "users" # Название таблицы
-    user_id = Column(Integer, primary_key=True, autoincrement=True) # Первичный ключ - идентификатор
+    __tablename__ = "users"     # Название таблицы
+    user_id = Column(Integer, primary_key=True, autoincrement=True)     # Первичный ключ - идентификатор
     user_first_name = Column(String(length=15), nullable=False, default="Максим")   # Имя пользователя
     user_second_name = Column(String(length=20), nullable=False, default="Максимов")    # Фамилия пользователя
     user_middle_name = Column(String(length=25), nullable=False, default="Максимович")  # Отчество пользователя
     user_email = Column(String(length=255), nullable=False, unique=True)   # Почтовый ящик пользователя
     user_pass = Column(String(length=255), nullable=False)    # Пароль пользователя
     user_position = Column(String(length=255), nullable=True)    # Должность пользователя
-    # role_id = Column()  # Роль пользователя
-    # image_id = Column() # Фотография пользователя
+    user_date_creation = Column(DateTime, nullable=False, default=func.now())
+    role_id = Column(ForeignKey("roles.role_id"))  # Роль пользователя
+    image_id = Column(ForeignKey("images.image_id"))    # Фотография пользователя
 
+    task = relationship("Tasks", secondary="user_task_association", back_populates="users")
+    role = relationship("Roles", back_populates="users")
 
 
