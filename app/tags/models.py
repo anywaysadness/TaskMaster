@@ -14,7 +14,7 @@ class Tag(Base):
     """
 
     __tablename__ = "tags"
-    tag_id = Column(Integer, primary_key=True, autoincrement=True)     # Первичный ключ - идентификатор
+    id = Column(Integer, primary_key=True, autoincrement=True)     # Первичный ключ - идентификатор
     tag_name = Column(String(100), nullable=False, default="Пользователь")     # Название тэга
 
     tasks = relationship("Task", secondary=tag_task_association_table, back_populates="tags")   # Обратная связь с tasks

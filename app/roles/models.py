@@ -13,7 +13,7 @@ class Role(Base):
     """
 
     __tablename__ = "roles"
-    role_id = Column(Integer, primary_key=True, autoincrement=True)     # Первичный ключ - идентификатор
+    id = Column(Integer, primary_key=True, autoincrement=True)     # Первичный ключ - идентификатор
     role_name = Column(String(100), nullable=False, default="Пользователь")     # Название роли
 
     users = relationship("User", back_populates="roles")

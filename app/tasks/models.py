@@ -14,7 +14,7 @@ class Task(Base):
     Класс модели sqlalchemy Task
     """
     __tablename__ = "tasks"
-    task_id = Column(Integer, primary_key=True, autoincrement=True)     # Первичный ключ - идентификатор
+    id = Column(Integer, primary_key=True, autoincrement=True)     # Первичный ключ - идентификатор
     task_date_create = Column(DateTime, nullable=False, server_default=func.now())
     task_name = Column(String(length=255), nullable=False, default="Задача")    # Имя задачи
     task_body = Column(Text)    # Описание задачи
