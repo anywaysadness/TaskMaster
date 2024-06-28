@@ -21,3 +21,10 @@ async def get_all_tags():
         return result.scalars().all()
 
 
+@router.get("/{tag_id}")
+async def get_tag_by_id():
+    """
+
+    :return: Тэг по id
+    """
+    pass

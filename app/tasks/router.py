@@ -19,3 +19,12 @@ async def get_all_tasks():
         query = select(Task)    # SELECT * FROM tasks
         result = await session.execute(query)
         return result.scalars().all()
+
+
+@router.get("/{task_id}")
+async def get_task_by_id():
+    """
+
+    :return: Задача по id
+    """
+    pass

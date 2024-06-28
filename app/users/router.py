@@ -23,5 +23,9 @@ async def get_all_users():
 
 @router.get("/{user_id}")
 async def get_user_by_id():
+    """
+
+    :return: Пользователь по id
+    """
     pass
 

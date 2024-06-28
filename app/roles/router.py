@@ -20,3 +20,11 @@ async def get_all_roles():
         result = await session.execute(query)
         return result.scalars().all()
 
+
+@router.get("/{role_id}")
+async def get_role_by_id():
+    """
+
+    :return: Роль по id
+    """
+    pass
