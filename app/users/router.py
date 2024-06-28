@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.database_connect import async_session_maker
+from app.users.schemas import SUser
 from app.users.dao import UserDAO
 
 router = APIRouter(
@@ -9,16 +9,16 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_all_users():
+async def get_all_users() -> list[SUser]:
     """
 
-    :return: Получить всех пользователи
+    :return: Получить список всех пользователи
     """
     return await UserDAO.find_all()
 
 
 @router.get("/{user_id}")
-async def get_user_by_id(user_id: int):
+async def get_user_by_id(user_id: int) -> SUser | None:
     """
 
     :return: Получить пользователя по id

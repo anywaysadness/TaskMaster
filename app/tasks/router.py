@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from app.database_connect import async_session_maker
-from app.tasks.models import Task
-from sqlalchemy import select
+from app.tasks.dao import TaskDAO
+from app.tasks.shemas import STask
+
 
 router = APIRouter(
     prefix="/tasks",
@@ -10,21 +10,18 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_all_tasks():
+async def get_all_tasks() -> list[STask]:
     """
 
-    :return: Все задачи
+    :return: Получить список всех задач
     """
-    async with async_session_maker() as session:
-        query = select(Task)    # SELECT * FROM tasks
-        result = await session.execute(query)
-        return result.scalars().all()
+    return await TaskDAO.find_all()
 
 
 @router.get("/{task_id}")
-async def get_task_by_id():
+async def get_task_by_id(task_id: int) -> STask | None:
     """
 
-    :return: Задача по id
+    :return: Получить задачу по id
     """
-    pass
+    return await TaskDAO.find_by_id(task_id)
