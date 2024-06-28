@@ -5,6 +5,8 @@
 from app.database_connect import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, func
 from sqlalchemy.orm import relationship
+from app.users.user_task_association import user_task_association_table
+
 
 class User(Base):
     """
@@ -20,10 +22,10 @@ class User(Base):
     user_pass = Column(String(length=255), nullable=False)    # Пароль пользователя
     user_position = Column(String(length=255), nullable=True)    # Должность пользователя
     user_date_creation = Column(DateTime, nullable=False, default=func.now())
-    role_id = Column(ForeignKey("roles.role_id"))  # Роль пользователя
-    image_id = Column(ForeignKey("images.image_id"))    # Фотография пользователя
+    role_id = Column(ForeignKey("roles.role_id"), default=2)  # Роль пользователя
+    image_id = Column(ForeignKey("images.image_id"), nullable=True)    # Фотография пользователя
 
-    task = relationship("Tasks", secondary="user_task_association", back_populates="users")
-    role = relationship("Roles", back_populates="users")
+    tasks = relationship("Task", secondary=user_task_association_table, back_populates="users")     # обратная связь с tasks
+    roles = relationship("Role", back_populates="users")   # обратная связь с roles
 
 

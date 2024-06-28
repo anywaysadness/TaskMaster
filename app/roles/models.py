@@ -16,5 +16,5 @@ class Role(Base):
     role_id = Column(Integer, primary_key=True, autoincrement=True)     # Первичный ключ - идентификатор
     role_name = Column(String(100), nullable=False, default="Пользователь")     # Название роли
 
-    user = relationship("User", secondary="user_task_association", back_populates="roles")
+    users = relationship("User", back_populates="roles")
 
