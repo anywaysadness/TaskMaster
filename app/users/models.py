@@ -28,4 +28,9 @@ class User(Base):
     tasks = relationship("Task", secondary=user_task_association_table, back_populates="users")     # обратная связь с tasks
     roles = relationship("Role", back_populates="users")   # обратная связь с roles
 
-
+    def __str__(self):
+        return f"Пользователь:" \
+               f"{self.user_email}" \
+               f"{self.user_second_name}" \
+               f"{self.user_first_name}" \
+               f"{self.user_middle_name}"

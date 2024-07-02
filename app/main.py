@@ -3,7 +3,7 @@ from app.users.router import router as router_users
 from app.tasks.router import router as router_tasks
 from app.roles.router import router as router_roles
 from app.tags.router import router as router_tags
-
+import uvicorn
 
 app = FastAPI()
 
@@ -16,3 +16,7 @@ app.include_router(router_tags)
 @app.get("/")
 def root():
     return {"message": "Ты попал верно"}
+
+
+if __name__ == '__main__':
+    uvicorn.run("app.main:app", reload=True)

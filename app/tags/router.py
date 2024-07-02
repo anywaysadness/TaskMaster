@@ -2,6 +2,8 @@ from fastapi import APIRouter
 from app.database_connect import async_session_maker
 from app.tags.models import Tag
 from sqlalchemy import select
+from app.tags.schemas import STag
+from app.tags.dao import TagDAO
 
 router = APIRouter(
     prefix="/tags",
@@ -9,22 +11,19 @@ router = APIRouter(
 )
 
 
-@router.get("")
-async def get_all_tags():
+@router.get("/")
+async def get_all_tags() -> list[STag]:
     """
 
-    :return: Все тэги
+    :return: Получить список всех тегов
     """
-    async with async_session_maker() as session:
-        query = select(Tag).order_by("tag_id")   # SELECT * FROM tags
-        result = await session.execute(query)
-        return result.scalars().all()
+    return await TagDAO.find_all()
 
 
-@router.get("/{tag_id}")
-async def get_tag_by_id():
+@router.get("/{tag_id}/")
+async def get_tag_by_id(tag_id: int) -> STag | None:
     """
 
-    :return: Тэг по id
+    :return: Получить тег по id
     """
-    pass
+    return await TagDAO.find_by_id(tag_id)
