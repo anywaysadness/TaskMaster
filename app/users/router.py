@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, status, Response, Depends, Path
 
-from app.users.dao import UserDAO
-from app.users.schemas import SUser, SUserRegister, SUserAuth
-from app.users.auth import get_password_hash, create_access_token, authenticate_user
-from app.users.dependencies import get_current_user, get_current_admin_user
-from app.users.models import User
+from app.users import UserDAO
+from app.users import SUser, SUserRegister, SUserAuth
+from app.users import get_password_hash, create_access_token, authenticate_user
+from app.users import get_current_user, get_current_admin_user
+from app.users import User
 from typing import Annotated
 
 router = APIRouter(

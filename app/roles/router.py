@@ -1,9 +1,6 @@
 from fastapi import APIRouter
-from app.database_connect import async_session_maker
-from app.roles.models import Role
-from sqlalchemy import select
-from app.roles.schemas import SRole
-from app.roles.dao import RoleDAO
+from app.roles import SRole
+from app.roles import RoleDAO
 
 router = APIRouter(
     prefix="/roles",

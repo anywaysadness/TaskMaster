@@ -2,8 +2,8 @@
 
 Этот файл служит для создания моделей sqlalchemy
 """
-from app.database_connect import Base
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, func
+from core.models import Base
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from app.tasks.tag_task_association import tag_task_association_table
 

@@ -3,7 +3,7 @@
 Этот файл служит для создания моделей sqlalchemy
 """
 
-from app.database_connect import Base
+from core.models import Base
 from sqlalchemy import Column, ForeignKey, Table, Integer, UniqueConstraint
 
 

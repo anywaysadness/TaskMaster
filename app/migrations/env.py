@@ -9,15 +9,9 @@ from alembic import context
 # Указание env где он находится относительно всего проекта
 sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))
 
-from app.database_connect import Base
-from app.config import settings
-from app.users.user_task_association import user_task_association_table
-from app.tasks.tag_task_association import tag_task_association_table
-from app.users.models import User
-from app.tasks.models import Task
-from app.roles.models import Role
-from app.tags.models import Tag
-from app.images.models import Image
+from core.database_connect import Base
+from core.config import settings
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

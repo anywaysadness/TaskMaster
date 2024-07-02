@@ -1,9 +1,16 @@
+"""
+Этот файл отвечает за:
+1. Создание JWT-токена
+2. Хеширование пароля
+3. Проверку валидности пароля
+"""
+
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import jwt
 from pydantic import EmailStr
 from app.users.dao import UserDAO
-from app.config import settings
+from core.config import settings
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -30,8 +37,8 @@ def verify_password(plain_password, hashed_password) -> bool:
 def create_access_token(data: dict) -> str:
     """
     Функция для создания токена
-    :param data:
-    :return:
+    :param data: Переданные данные пользователя
+    :return: JWT-token
     """
     to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(minutes=30)
@@ -43,6 +50,12 @@ def create_access_token(data: dict) -> str:
 
 
 async def authenticate_user(user_email: EmailStr, user_pass: str):
+    """
+    Функция для аутентификации пользователя
+    :param user_email: Переданный email пользователя
+    :param user_pass: Переданный пароль пользователя
+    :return: Найденный User
+    """
     user = await UserDAO.find_one_or_none(user_email=user_email)
     if not user and not verify_password(user_pass, user.user_pass):
         return None

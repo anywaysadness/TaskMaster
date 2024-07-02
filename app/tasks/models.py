@@ -2,7 +2,7 @@
 
 Этот файл служит для создания моделей sqlalchemy
 """
-from app.database_connect import Base
+from core.models import Base
 from sqlalchemy import Column, Integer, String, Text, DateTime, func
 from sqlalchemy.orm import relationship
 from app.users.user_task_association import user_task_association_table

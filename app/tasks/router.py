@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Request, Depends
-from app.tasks.dao import TaskDAO
-from app.tasks.schemas import STask, SAddTask
+from fastapi import APIRouter, Depends
+from app.tasks import TaskDAO
+from app.tasks import STask, SAddTask
 from app.users.models import User
 from app.users.dependencies import get_current_user, get_current_admin_user
 

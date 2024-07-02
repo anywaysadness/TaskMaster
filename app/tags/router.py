@@ -1,9 +1,6 @@
 from fastapi import APIRouter
-from app.database_connect import async_session_maker
-from app.tags.models import Tag
-from sqlalchemy import select
-from app.tags.schemas import STag
-from app.tags.dao import TagDAO
+from app.tags import STag
+from app.tags import TagDAO
 
 router = APIRouter(
     prefix="/tags",
