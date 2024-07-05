@@ -5,6 +5,7 @@ from app.roles.router import router as router_roles
 from app.tags.router import router as router_tags
 import uvicorn
 
+
 app = FastAPI()
 
 app.include_router(router_users)

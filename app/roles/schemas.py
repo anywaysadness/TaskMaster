@@ -3,8 +3,8 @@ from pydantic import BaseModel, ConfigDict
 
 class SRole(BaseModel):
     """
-         Схема pydantic для Role
-         """
+    Схема pydantic для Role
+    """
     id: int
     role_name: str
 

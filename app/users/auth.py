@@ -49,14 +49,15 @@ def create_access_token(data: dict) -> str:
     return encoded_jwt
 
 
-async def authenticate_user(user_email: EmailStr, user_pass: str):
+async def authenticate_user(user_email: EmailStr, user_pass: str, session):
     """
     Функция для аутентификации пользователя
+    :param session:
     :param user_email: Переданный email пользователя
     :param user_pass: Переданный пароль пользователя
     :return: Найденный User
     """
-    user = await UserDAO.find_one_or_none(user_email=user_email)
+    user = await UserDAO.find_one_or_none(user_email=user_email, session=session)
     if not user and not verify_password(user_pass, user.user_pass):
         return None
     return user

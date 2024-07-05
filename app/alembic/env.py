@@ -1,23 +1,23 @@
 from logging.config import fileConfig
-import sys
-from os.path import abspath, dirname
+
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+import sys
+from os.path import abspath, dirname
 
-from alembic import context
-
-# Указание env где он находится относительно всего проекта
 sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))
 
-from core.database_connect import Base
 from core.config import settings
+from core.models import Base
+from alembic import context
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
-# Указание базы данных с которой будет сравниваться состояние для создания миграций
 config.set_main_option("sqlalchemy.url", f"{settings.DATABASE_URL}?async_fallback=True")
+
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -28,8 +28,6 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-
-# Передача метаданных об о всех моделях
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,

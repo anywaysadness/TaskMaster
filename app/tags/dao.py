@@ -1,4 +1,4 @@
-from app.tags.models import Tag
+from core.models import Tag
 from app.dao.base import BaseDAO
 
 

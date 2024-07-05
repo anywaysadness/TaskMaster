@@ -1,5 +1,5 @@
 from app.dao.base import BaseDAO
-from app.roles.models import Role
+from core.models import Role
 
 
 class RoleDAO(BaseDAO):
