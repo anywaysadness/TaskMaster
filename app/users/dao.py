@@ -45,10 +45,10 @@ class UserDAO(BaseDAO):
     @classmethod
     async def get_tasks_with_user(
             cls,
-            model_id: int,
+            user_id: int,
             session: AsyncSession
     ):
-        query = select(User).options(selectinload(User.back_tasks)).filter_by(id=model_id)
+        query = select(User).options(selectinload(User.back_tasks)).filter_by(id=user_id)
         result = await session.execute(query)
         tasks_with_user = result.scalars().all()
         return tasks_with_user

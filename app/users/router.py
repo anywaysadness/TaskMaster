@@ -60,7 +60,19 @@ async def show_tasks_with_current_user(
         current_user: User = Depends(get_current_user),  # Проверка на аутентификацию пользователя
 ):
     tasks = await UserDAO.get_tasks_with_user(
-        model_id=current_user.id,
+        user_id=current_user.id,
+        session=session
+    )
+    return tasks
+
+
+@router.get("/tasks/{user_id}")
+async def show_tasks_by_user_id(
+        user_id: int,
+        session: AsyncSession = Depends(db_helper.scoped_session_dependency),
+):
+    tasks = await UserDAO.get_tasks_with_user(
+        user_id=user_id,
         session=session
     )
     return tasks
@@ -69,7 +81,6 @@ async def show_tasks_with_current_user(
 @router.get("/all_tasks_with_all_users/")
 async def show_all_tasks_with_all_users(
         session: AsyncSession = Depends(db_helper.scoped_session_dependency),
-        current_user: User = Depends(get_current_user),
 ):
     all_tasks_with_all_users = await UserDAO.get_all_tasks_with_all_users(
         session=session

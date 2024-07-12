@@ -5,13 +5,12 @@
 from core.models import Base
 from sqlalchemy import Column, Integer, String, Text, DateTime, func, ForeignKey
 from sqlalchemy.orm import relationship, Mapped, mapped_column
-# from app.users.user_task_association import user_task_association_table
-# from app.tasks.tag_task_association import tag_task_association_table
+from .user_task_association import user_task_association_table
 from typing import TYPE_CHECKING
 
+
 if TYPE_CHECKING:
-    from core.models import User
-    from core.models import Tag
+    from core.models import User, Tag
 
 
 class Task(Base):
@@ -49,10 +48,12 @@ class Task(Base):
         default="Не выполнена",
         server_default="Не выполнена"
     )
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
 
     # Обратная связь с users
-    back_users: Mapped["User"] = relationship(back_populates="back_tasks")
+    back_users: Mapped[list["User"]] = relationship(
+        secondary=user_task_association_table,
+        back_populates="back_tasks"
+    )
     # обратная связь с tag
     # back_tags: Mapped[list["Tag"]] = relationship(back_populates="back_tasks")
 
@@ -61,5 +62,4 @@ class Task(Base):
         return f"{self.__class__.__name__}" \
                f"(id={self.id}, " \
                f"task_name={self.task_name}, " \
-               f"task_status={self.task_status} " \
-               f"user_id={self.user_id})"
+               f"task_status={self.task_status} "

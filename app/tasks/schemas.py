@@ -15,7 +15,7 @@ class STask(STaskBase):
     task_date_create: datetime
     task_name: str
     task_body: str
-    status: str
+    task_status: str
 
 
 class SAddTask(BaseModel):

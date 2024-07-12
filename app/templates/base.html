@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', path='styles/main.css')}}">
+    <title>Task Manager</title>
+</head>
+<body>
+<div class="navbar">
+    <div class="menu">
+        <a href="/pages/users">Главная</a>
+        <a href="http://127.0.0.1:8000/docs/">Документация</a>
+        <a href="#services">Мои задачи</a>
+        <a href="#about">Профиль</a>
+<!--        <button class="btn login-btn">-->
+            <a href="/pages/logout">Выход</a>
+<!--        </button>-->
+    </div>
+
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

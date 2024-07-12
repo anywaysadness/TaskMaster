@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="main_menu">
+        {% for user in users %}
+        <a href="/pages/tasks/{{user.id}}" class="info-card">
+            <h6>user_id:{{user.id}}</h6>
+            <h6>{{user.user_second_name}} {{user.user_first_name}} {{user.user_middle_name}}</h6>
+            <h6>{{user.user_email[:7]}}</h6>
+            <h6>Должность: {{user.user_position}}</h6>
+            <h6>Текущие задания:
+            {% for task in user.back_tasks %}
+                {{ task.task_name[:5]}}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+            </h6>
+        </a>
+        {% endfor %}
+    </div>
+{% endblock %}
+

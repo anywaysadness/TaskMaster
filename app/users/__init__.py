@@ -18,3 +18,4 @@ from .schemas import SUser, SUserAuth, SUserRegister, SUserResponse, SUserUpdate
 from .auth import get_password_hash, create_access_token, authenticate_user
 from .dependencies import get_current_user, get_current_admin_user
 
+

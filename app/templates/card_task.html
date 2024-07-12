@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="tasks">
+    {% for val in user %}
+            {% for task in val.back_tasks %}
+            <div class="card-task">
+                <h2>{{task.task_name}}</h2>
+                <h3>{{task.task_status}}</h3>
+                <h4>{{task.task_date_create}}</h4>
+
+                <h4>{{task.task_body}}</h4>
+            </div>
+            {% endfor %}
+        {% endfor %}
+</div>
+
+
+
+{% endblock %}
