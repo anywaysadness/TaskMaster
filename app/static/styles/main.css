@@ -157,3 +157,18 @@ margin-top: 80px;
 .card-task h1,h2,h3,h4,h5,h6{
     margin:0px;
 }
+
+.login-container {
+    display: flex;
+    margin-top: 80px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: 80px;
+}
+
+.form-login{
+    display:flex;
+    flex-direction: column;
+}
